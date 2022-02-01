@@ -1,0 +1,27 @@
+﻿<Window x:Class="Training.ListFormation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Training"
+        mc:Ignorable="d"
+        Title="List des Formations" Height="309" Width="594"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="0,0,10,4">
+        <DataGrid Name="dataGrid1" AlternatingRowBackground="#FF4DC1D0" RowBackground="#FFC7C810" Margin="10,43,10,32" AutoGenerateColumns="False" ItemsSource="{Binding}" Background="{x:Null}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom Formation" Binding="{Binding Libelle}" />
+                <DataGridTextColumn Header="Type Formation" Binding="{Binding type}" />
+                <DataGridTextColumn Header="Date Début" Binding="{Binding DateDebut}" />
+                <DataGridTextColumn Header="Date Fin" Binding="{Binding DateFin}" />
+                <DataGridTextColumn Header="Nom Formateur" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom Formateur" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

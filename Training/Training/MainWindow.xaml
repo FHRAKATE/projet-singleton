@@ -1,0 +1,31 @@
+﻿<Window x:Class="Training.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Training"
+        mc:Ignorable="d"
+        Title="Gestion de Formation" Height="234" Width="509" WindowStartupLocation="CenterScreen" Icon="/Image/icons8_training.ico">
+    <Window.Background>
+        <ImageBrush ImageSource="image/Image2.jpg"/>
+    </Window.Background>
+    <Grid Margin="0,0,0,3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="445*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Height="20" HorizontalAlignment="Left" Name="menu_1" VerticalAlignment="Top" Width="436" Background="Transparent"  Margin="0,1,0,0" Grid.ColumnSpan="2">
+            <MenuItem Header="Administrer" Width="80" Foreground="#FF585D5F" FontWeight="Bold" Background="Transparent" ForceCursor="True" Click="MenuItem_Click_1"  >
+                <MenuItem x:Name="addEnseignant" Header="_Ajouter Enseignant"   Background="Transparent" Click="addEnseignant_Click" />
+                <MenuItem x:Name="addTypeForm" Header="_Ajouter Type Formation"  Background="White" Click="addTypeFormation_Click"   />
+                <MenuItem x:Name="addFormation" Header="_Ajouter Formation"   Background="White" Click="addFormation_Click" />
+                <MenuItem Name="Quitter" Header="_Quitter" Background="White"  Click ="Quitter_Click"/>
+            </MenuItem>
+            <MenuItem Header="Consulter"  Width="80" Foreground="#FF585D5F" FontWeight="Bold" Background="Transparent" ForceCursor="True" Click="MenuItem_Click">
+                <MenuItem x:Name="FormationLst" Header="_liste Formations" Background="White" Click="FormationLst_Click"  />
+            </MenuItem>
+
+        </Menu>
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="Training.AjouterEnseignant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Training"
+        mc:Ignorable="d"
+        Title="AjouterEnseignant" Height="384" Width="454"  WindowStartupLocation="CenterScreen" Foreground="#FFFFFEFE" ResizeMode="NoResize" Icon = "image/icons8_training.ico">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid HorizontalAlignment="Center" Width="454" Height="361" VerticalAlignment="Center">
+        <Label Content="Ajouter Enseignant" HorizontalAlignment="Left" Height="35" Margin="96,31,0,0" VerticalAlignment="Top" Width="254" FontSize="15" HorizontalContentAlignment="Center" FontWeight="Bold" Foreground="#FFF7F5F5"/>
+        <TextBox x:Name="txtNom" HorizontalAlignment="Left" Height="30" Margin="162,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="14"/>
+        <TextBox x:Name="txtPrenom" HorizontalAlignment="Left" Height="30" Margin="162,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="14"/>
+        <TextBox x:Name="txtVille" HorizontalAlignment="Left" Height="30" Margin="162,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="14"/>
+        <Label Content="Nom : " HorizontalAlignment="Left" Height="35" Margin="65,93,0,0" VerticalAlignment="Top" Width="98" FontWeight="Bold" FontSize="14" Foreground="#FFFFFEFE"/>
+        <Label Content="Prénom : " HorizontalAlignment="Left" Height="35" Margin="65,151,0,0" VerticalAlignment="Top" Width="98" FontWeight="Bold" FontSize="14" Foreground="#FFFFFEFE"/>
+        <Label Content="Ville : " HorizontalAlignment="Left" Height="35" Margin="65,210,0,0" VerticalAlignment="Top" Width="98" FontWeight="Bold" FontSize="14" Foreground="#FFFFFEFE"/>
+        <Button x:Name="btnAjout" Content="Ajouter" HorizontalAlignment="Left" Height="30" Margin="182,282,0,0" VerticalAlignment="Top" Width="96" FontSize="14" FontWeight="Bold" Click="btnAjout_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FormationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Enseignant">
+          <Key>
+            <PropertyRef Name="IdFormateur" />
+          </Key>
+          <Property Name="IdFormateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nchar" MaxLength="20" />
+          <Property Name="Prenom" Type="nchar" MaxLength="20" />
+          <Property Name="Ville" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Formation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nchar" MaxLength="50" />
+          <Property Name="DateDebut" Type="date" />
+          <Property Name="DateFin" Type="date" />
+          <Property Name="IdFormateur" Type="int" />
+          <Property Name="IdType" Type="int" />
+        </EntityType>
+        <EntityType Name="TypeFormation">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Formation_Enseignant">
+          <End Role="Enseignant" Type="Self.Enseignant" Multiplicity="0..1" />
+          <End Role="Formation" Type="Self.Formation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enseignant">
+              <PropertyRef Name="IdFormateur" />
+            </Principal>
+            <Dependent Role="Formation">
+              <PropertyRef Name="IdFormateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formation_TypeFormation">
+          <End Role="TypeFormation" Type="Self.TypeFormation" Multiplicity="0..1" />
+          <End Role="Formation" Type="Self.Formation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFormation">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Formation">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FormationModelStoreContainer">
+          <EntitySet Name="Enseignant" EntityType="Self.Enseignant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Formation" EntityType="Self.Formation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeFormation" EntityType="Self.TypeFormation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Formation_Enseignant" Association="Self.FK_Formation_Enseignant">
+            <End Role="Enseignant" EntitySet="Enseignant" />
+            <End Role="Formation" EntitySet="Formation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formation_TypeFormation" Association="Self.FK_Formation_TypeFormation">
+            <End Role="TypeFormation" EntitySet="TypeFormation" />
+            <End Role="Formation" EntitySet="Formation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FormationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Enseignant">
+          <Key>
+            <PropertyRef Name="IdFormateur" />
+          </Key>
+          <Property Name="IdFormateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Prenom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Formations" Relationship="Self.FK_Formation_Enseignant" FromRole="Enseignant" ToRole="Formation" />
+        </EntityType>
+        <EntityType Name="Formation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="DateDebut" Type="DateTime" Precision="0" />
+          <Property Name="DateFin" Type="DateTime" Precision="0" />
+          <Property Name="IdFormateur" Type="Int32" />
+          <Property Name="IdType" Type="Int32" />
+          <NavigationProperty Name="Enseignant" Relationship="Self.FK_Formation_Enseignant" FromRole="Formation" ToRole="Enseignant" />
+          <NavigationProperty Name="TypeFormation" Relationship="Self.FK_Formation_TypeFormation" FromRole="Formation" ToRole="TypeFormation" />
+        </EntityType>
+        <EntityType Name="TypeFormation">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Formations" Relationship="Self.FK_Formation_TypeFormation" FromRole="TypeFormation" ToRole="Formation" />
+        </EntityType>
+        <Association Name="FK_Formation_Enseignant">
+          <End Role="Enseignant" Type="Self.Enseignant" Multiplicity="0..1" />
+          <End Role="Formation" Type="Self.Formation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enseignant">
+              <PropertyRef Name="IdFormateur" />
+            </Principal>
+            <Dependent Role="Formation">
+              <PropertyRef Name="IdFormateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formation_TypeFormation">
+          <End Role="TypeFormation" Type="Self.TypeFormation" Multiplicity="0..1" />
+          <End Role="Formation" Type="Self.Formation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFormation">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Formation">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FormationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Enseignants" EntityType="Self.Enseignant" />
+          <EntitySet Name="Formations" EntityType="Self.Formation" />
+          <EntitySet Name="TypeFormations" EntityType="Self.TypeFormation" />
+          <AssociationSet Name="FK_Formation_Enseignant" Association="Self.FK_Formation_Enseignant">
+            <End Role="Enseignant" EntitySet="Enseignants" />
+            <End Role="Formation" EntitySet="Formations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formation_TypeFormation" Association="Self.FK_Formation_TypeFormation">
+            <End Role="TypeFormation" EntitySet="TypeFormations" />
+            <End Role="Formation" EntitySet="Formations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FormationModelStoreContainer" CdmEntityContainer="FormationEntities">
+          <EntitySetMapping Name="Enseignants">
+            <EntityTypeMapping TypeName="FormationModel.Enseignant">
+              <MappingFragment StoreEntitySet="Enseignant">
+                <ScalarProperty Name="IdFormateur" ColumnName="IdFormateur" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formations">
+            <EntityTypeMapping TypeName="FormationModel.Formation">
+              <MappingFragment StoreEntitySet="Formation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="IdFormateur" ColumnName="IdFormateur" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeFormations">
+            <EntityTypeMapping TypeName="FormationModel.TypeFormation">
+              <MappingFragment StoreEntitySet="TypeFormation">
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
